@@ -1,0 +1,47 @@
+name: Update Animeko manifest
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-animeko-manifest
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out bucket
+        uses: actions/checkout@v4
+
+      - name: Update manifest from latest stable release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: ./scripts/update-animeko.ps1
+
+      - name: Detect manifest changes
+        id: diff
+        shell: bash
+        run: |
+          if git diff --quiet -- bucket/animeko.json; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push manifest
+        if: steps.diff.outputs.changed == 'true'
+        shell: bash
+        run: |
+          version=$(jq -r '.version' bucket/animeko.json)
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bucket/animeko.json
+          git commit -m "Update Animeko to $version"
+          git push

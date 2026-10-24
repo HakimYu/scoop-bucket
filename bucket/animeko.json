@@ -1,17 +1,17 @@
 {
-  "version": "6.3.0",
+  "version": "6.4.0",
   "description": "Cross-platform anime tracking and playback platform",
   "homepage": "https://animeko.org/",
   "license": "AGPL-3.0-only",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/open-ani/animeko/releases/download/v6.3.0/ani-6.3.0-windows-x86_64.zip",
-      "hash": "sha256:947e0d4e2085c4a29b1e3226fff4db6b4388e284ace70ed188cff437333aae6b",
+      "url": "https://github.com/open-ani/animeko/releases/download/v6.4.0/ani-6.4.0-windows-x86_64.zip",
+      "hash": "sha256:1da42c7a152573d888f119fdcdba8a9bf7de4fec64bc42ce3a5155b5e8264dc2",
       "extract_dir": "Ani"
     },
     "arm64": {
-      "url": "https://github.com/open-ani/animeko/releases/download/v6.3.0/ani-6.3.0-windows-aarch64.zip",
-      "hash": "sha256:c3552212d70a36ef6f88a8b4602513d19ce75bb765e187769254720d1cf0be56",
+      "url": "https://github.com/open-ani/animeko/releases/download/v6.4.0/ani-6.4.0-windows-aarch64.zip",
+      "hash": "sha256:f3afcb64564f09a366b5b321d7e91e38da9c80663c55056d664b7416da39b9a8",
       "extract_dir": "Ani"
     }
   },
